@@ -1,0 +1,5 @@
+Wackamole extension Sean and Mary
+
+We made this game more frustrating by removing the labels on the holes and reordering the keys that corresponded to each hole.
+We also added an alert that says "You Suck" every time the player made a mistake. This makes the game harder and more annoying
+because the player must first figure out the keys. 
