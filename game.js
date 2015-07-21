@@ -1,7 +1,13 @@
 game = Object.create(Game.prototype);
-game.keys = ['D', 'F', 'S', 'A'];
-for (var i = 0; i < game.keys.length; i++){
-  atom.input.bind(atom.key[game.keys[i]], game.keys[i]);
+var randomOrder = [];
+var originalOrder = ['D', 'F', 'S', 'A'];
+for(var x = 0; x <= 3; x++){
+	var randomNumber = Math.round(Math.random() * (3-x));
+	randomOrder.push(originalOrder[randomNumber]);
+	originalOrder.splice(randomNumber, 1);
+};
+for (var i = 0; i < randomOrder.length; i++){
+  atom.input.bind(atom.key[randomOrder[i]], randomOrder[i]);
 };
 atom.currentMoleTime = 0;
 atom.tillNewMole = 2;
@@ -17,9 +23,9 @@ game.update = function(dt) {
       game.bop.bopped = false;
     }
   };
-  for (var i = 0; i < game.keys.length; i++){
-    if (atom.input.pressed(game.keys[i])){
-      game.bop.with_key(game.keys[i]);
+  for (var i = 0; i < randomOrder.length; i++){
+    if (atom.input.pressed(randomOrder[i])){
+      game.bop.with_key(randomOrder[i]);
     }
   };
 };
@@ -114,7 +120,7 @@ game.drawBackground = function(){
 };
 game.mole = {
   size: 40,
-  color: '#557',
+  color: 'black',
   noseSize: 8,
   noseColor: "#c55",
   eyeSize: 5,
@@ -167,5 +173,5 @@ window.onblur = function() {
 window.onfocus = function() {
   return game.run();
 };
-game.makeHoles(game.keys, 145, atom.height/2 + 85);
+game.makeHoles(randomOrder, 145, atom.height/2 + 85);
 game.run();
